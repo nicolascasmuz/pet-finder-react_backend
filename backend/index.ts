@@ -34,7 +34,14 @@ import { resend } from "./lib/resend";
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://pet-finder-react-render.onrender.com",
+  methods: ["get", "post", "put", "delete", "options"],
+  allowedHeaders: ["content-type", "authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "50mb" }));
 
 /* sequelize.sync({ force: true }).then((res) => {
